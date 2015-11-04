@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,24 +10,63 @@ namespace PingPong
 {
     class Ball
     {
-        public Vector UpdateBallPos(PictureBox p, int velosity , Form form)
+        private Vector vector;
+        private readonly int radius;
+        private PictureBox pictureBox;
+        private readonly World world;
+
+        public Ball(Vector vector, PictureBox pictureBox, World world)
         {
-            var X = p.Location.X + velosity;
-            var Y = p.Location.Y + velosity;
-            var V = velosity;
+            this.vector = vector;
+            this.radius = pictureBox.Width/2;
+            this.pictureBox = pictureBox;
+            this.world = world;
+        }
 
-            //Top and Bottom
-            if (Y < 0)
+        public void Move()
+        {
+            pictureBox.Location = new Point(pictureBox.Location.X + vector.x, pictureBox.Location.Y + vector.y);
+            HandleCollision();
+        }
+
+        public bool HitTopWall()
+        {
+            return radius >= pictureBox.Location.Y;
+        }
+
+        public bool HitBottomWall(World w)
+        {
+            return w.Height - 1 == pictureBox.Location.Y + radius;
+        }
+
+        public bool HitLeftWall()
+        {
+            return radius >= pictureBox.Location.X;
+        }
+
+        public bool HitRightWall(World w)
+        {
+            return w.Width - 1 == pictureBox.Location.X + radius;
+        }
+
+        public void HandleCollision()
+        {
+            if (HitTopWall())
             {
-                Y = -Y;
-                V = -V;
-            } else if (Y > (form.Height - 1))
-            {
-                Y -= 2*(Y - form.Height - 1);
-                V = -V;
+                vector = vector.verticalFlip();
             }
-
-            return new Vector(Y,V);
+            if (HitBottomWall(world))
+            {
+                vector = vector.verticalFlip();
+            }
+            if (HitLeftWall())
+            {
+                vector = vector.horizontalFlip();
+            }
+            if (HitRightWall(world))
+            {
+                vector = vector.horizontalFlip();
+            }
         }
     }
 }

@@ -5,24 +5,26 @@ using System.Windows.Forms;
 
 namespace PingPong
 {
-    public partial class Form1 : Form
+    public partial class World : Form
     {
         private readonly Timer _timer = new Timer();
         private const int PaddleSpeed = 10;
-        private int BallVelosity = 5;
         private bool _playerUp, _playerDown;
         private bool _enemyUp, _enemyDown;
         private bool Running;
+        private Ball ball;
 
-        public Form1()
+        public World()
         {
-            this.Height = 480;
-            this.Width = 620;
             InitializeComponent();
             KeyDown += MyKeyDown;
             KeyUp += MyKeyUp;
 
             label1.Text = "Press Space to start game";
+            ball = new Ball(new Vector( 2, 5), pictureBox2, this);
+
+            pictureBox1.Location = new Point(this.Width-this.Width, this.Height/2);
+            pictureBox3.Location = new Point(this.Width+this.Width, this.Height/2);
         }
 
         public void GameLoop()
@@ -90,7 +92,7 @@ namespace PingPong
             if (Running)
             {
                 MovePaddles();
-                MoveBall();
+                ball.Move();
             }
         }
 
@@ -116,21 +118,6 @@ namespace PingPong
             if (_enemyDown && !Collision.Down(pictureBox3, Height))
             {
                 pictureBox3.Location = new Point(x2, y2 += PaddleSpeed);
-            }
-        }
-
-        public void MoveBall()
-        {
-            var updatedBall = new Ball().UpdateBallPos(pictureBox2, BallVelosity, this);
-            pictureBox2.Top = updatedBall.Coordinat;
-            BallVelosity = updatedBall.Velosity;
-
-            if(updatedBall.Coordinat >= pictureBox1.Bounds.Y && updatedBall.Coordinat <= pictureBox1.Bounds.Y - pictureBox1.Height)
-            {
-                var bounceAngle = ((pictureBox1.Top/2))/(pictureBox1.Top/2)*(Math.PI/2 - (Math.PI/12));
-                BallVelosity = (int) Math.Sqrt(BallVelosity*BallVelosity);
-
-                pictureBox2.Left = (int) (BallVelosity * Math.Cos(bounceAngle));
             }
         }
     }

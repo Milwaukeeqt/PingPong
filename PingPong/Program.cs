@@ -10,7 +10,7 @@ namespace PingPong
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var myForm = new Form1();
+            var myForm = new World();
             myForm.Show();
             myForm.GameLoop();
         }

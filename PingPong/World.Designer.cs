@@ -1,6 +1,6 @@
 ﻿namespace PingPong
 {
-    partial class Form1
+    partial class World
     {
         /// <summary>
         /// Required designer variable.
@@ -73,17 +73,17 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
-            // Form1
+            // World
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 464);
+            this.ClientSize = new System.Drawing.Size(620, 480);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "World";
+            this.Text = "World";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

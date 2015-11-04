@@ -8,14 +8,34 @@ namespace PingPong
 {
     class Vector
     {
-        public Vector(int coordinat, int velosity)
+        public int x { get; set; }
+
+        public int y { get; set; }
+
+        public Vector(int y, int x)
         {
-            Coordinat = coordinat;
-            Velosity = velosity;
+            this.y = y;
+            this.x = x;
         }
 
-        public int Coordinat  { get; set; }
+        public Vector verticalFlip()
+        {
+            return new Vector(x, -y);
+        }
 
-        public int Velosity { get; set; }
+        public Vector horizontalFlip()
+        {
+            return new Vector(-x, y);
+        }
+
+        public double Lenght()
+        {
+            return Math.Sqrt(x*x + y*y);
+        }
+
+        public Vector Scale(int scalar)
+        {
+            return new Vector(x*scalar, y*scalar);
+        }
     }
 }
