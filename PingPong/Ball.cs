@@ -12,40 +12,48 @@ namespace PingPong
     {
         private Vector vector;
         private readonly int radius;
-        private PictureBox pictureBox;
+        private PictureBox ball;
         private readonly World world;
 
-        public Ball(Vector vector, PictureBox pictureBox, World world)
+        public Ball(Vector vector, PictureBox ball, World world)
         {
             this.vector = vector;
-            this.radius = pictureBox.Width/2;
-            this.pictureBox = pictureBox;
+            this.radius = ball.Width/2;
+            this.ball = ball;
             this.world = world;
         }
 
         public void Move()
         {
-            pictureBox.Location = new Point(pictureBox.Location.X + vector.x, pictureBox.Location.Y + vector.y);
+            ball.Location = new Point(ball.Location.X + vector.x, ball.Location.Y + vector.y);
             HandleCollision();
         }
 
         public void HandleCollision()
         {
-            if (Collision.Up(pictureBox))
+            if (Collision.Up(ball))
             {
                 vector = vector.VerticalFlip();
             }
-            if (Collision.Down(pictureBox,world.Height))
+            if (Collision.Down(ball,world.Height))
             {
                 vector = vector.VerticalFlip();
             }
-            if (Collision.Left(pictureBox))
+            if (Collision.Left(ball))
             {
                 vector = vector.HorizontalFlip();
             }
-            if (Collision.Right(pictureBox,world.Width))
+            if (Collision.Right(ball,world.Width))
             {
                 vector = vector.HorizontalFlip();
+            }
+        }
+
+        public void HandlePaddleCollision(PictureBox paddle)
+        {
+            if (Collision.HitPaddle(paddle, ball))
+            {
+                vector = vector.VerticalFlip();
             }
         }
     }

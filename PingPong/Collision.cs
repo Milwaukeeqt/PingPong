@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace PingPong
 
         public static bool Down(PictureBox p, int height)
         {
-            return p.Location.Y + p.Height > height;
+            return p.Location.Y + p.Height > height-(p.Height/2)+10;
         }
 
         public static bool Left(PictureBox p)
@@ -27,6 +28,11 @@ namespace PingPong
         public static bool Right(PictureBox p, int width)
         {
             return p.Location.X + p.Width > width;
+        }
+
+        public static bool HitPaddle(PictureBox p, PictureBox ball)
+        {
+            return p.Bounds.IntersectsWith(new Rectangle(ball.Location,ball.Size));
         }
     }
 }

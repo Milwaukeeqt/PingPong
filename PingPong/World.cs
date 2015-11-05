@@ -8,12 +8,12 @@ namespace PingPong
     public partial class World : Form
     {
         private readonly Timer _timer = new Timer();
-        private int fps;
-        private const int PaddleSpeed = 10;
         private bool _playerUp, _playerDown;
         private bool _enemyUp, _enemyDown;
         private bool Running;
         private Ball ball;
+        private Paddle player1;
+        private Paddle player2;
 
         public World()
         {
@@ -23,6 +23,8 @@ namespace PingPong
 
             label1.Text = "Press Space to start game";
             ball = new Ball(new Vector( -5, 5), pictureBox2, this);
+            player1 = new Paddle(pictureBox3,this);
+            player2 = new Paddle(pictureBox1,this);
         }
 
         public void GameLoop()
@@ -32,7 +34,7 @@ namespace PingPong
                 _timer.Reset();
                 RenderScene();
                 Application.DoEvents();
-                while (_timer.GetTicks() < 10);
+                while (_timer.GetTicks() < 20);
             }
         }
 
@@ -57,7 +59,16 @@ namespace PingPong
                     _enemyDown = true;
                     break;
                 case Keys.Space:
-                    Running = true;
+                    if (Running == false)
+                    {
+                        this.Text = "World";
+                        Running = true;
+                    }
+                    else
+                    {
+                        this.Text = "World - Paused";
+                        Running = false;
+                    }
                     label1.Hide();
                     break;
                 case Keys.Escape:
@@ -85,38 +96,23 @@ namespace PingPong
             }
         }
 
+        private void World_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public void RenderScene()
         {
             if (Running)
             {
-                MovePaddles();
+                player1.MovePaddles(_playerUp,_playerDown);
+                player2.MovePaddles(_enemyUp,_enemyDown);
                 ball.Move();
+                ball.HandlePaddleCollision(pictureBox1);
+                ball.HandlePaddleCollision(pictureBox3);
             }
         }
 
-        public void MovePaddles()
-        {
-            var x = pictureBox1.Location.X;
-            var y = pictureBox1.Location.Y;
-            var x2 = pictureBox3.Location.X;
-            var y2 = pictureBox3.Location.Y;
-
-            if (_playerUp && !Collision.Up(pictureBox1))
-            {
-                pictureBox1.Location = new Point(x, y -= PaddleSpeed);
-            }
-            if (_playerDown && !Collision.Down(pictureBox1, Height))
-            {
-                pictureBox1.Location = new Point(x, y += PaddleSpeed);
-            }
-            if (_enemyUp && !Collision.Up(pictureBox3))
-            {
-                pictureBox3.Location = new Point(x2, y2 -= PaddleSpeed);
-            }
-            if (_enemyDown && !Collision.Down(pictureBox3, Height))
-            {
-                pictureBox3.Location = new Point(x2, y2 += PaddleSpeed);
-            }
-        }
+        
     }
 }

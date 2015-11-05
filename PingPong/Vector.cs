@@ -27,15 +27,5 @@ namespace PingPong
         {
             return new Vector(-x, y);
         }
-
-        public double Lenght()
-        {
-            return Math.Sqrt(x*x + y*y);
-        }
-
-        public Vector Scale(int scalar)
-        {
-            return new Vector(x*scalar, y*scalar);
-        }
     }
 }

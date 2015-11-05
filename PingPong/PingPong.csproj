@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="Collision.cs" />
+    <Compile Include="Paddle.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
