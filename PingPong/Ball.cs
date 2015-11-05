@@ -29,43 +29,23 @@ namespace PingPong
             HandleCollision();
         }
 
-        public bool HitTopWall()
-        {
-            return radius >= pictureBox.Location.Y;
-        }
-
-        public bool HitBottomWall(World w)
-        {
-            return w.Height - 1 == pictureBox.Location.Y + radius;
-        }
-
-        public bool HitLeftWall()
-        {
-            return radius >= pictureBox.Location.X;
-        }
-
-        public bool HitRightWall(World w)
-        {
-            return w.Width - 1 == pictureBox.Location.X + radius;
-        }
-
         public void HandleCollision()
         {
-            if (HitTopWall())
+            if (Collision.Up(pictureBox))
             {
-                vector = vector.verticalFlip();
+                vector = vector.VerticalFlip();
             }
-            if (HitBottomWall(world))
+            if (Collision.Down(pictureBox,world.Height))
             {
-                vector = vector.verticalFlip();
+                vector = vector.VerticalFlip();
             }
-            if (HitLeftWall())
+            if (Collision.Left(pictureBox))
             {
-                vector = vector.horizontalFlip();
+                vector = vector.HorizontalFlip();
             }
-            if (HitRightWall(world))
+            if (Collision.Right(pictureBox,world.Width))
             {
-                vector = vector.horizontalFlip();
+                vector = vector.HorizontalFlip();
             }
         }
     }

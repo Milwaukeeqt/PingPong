@@ -40,7 +40,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 163);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 163);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(18, 122);
             this.pictureBox1.TabIndex = 0;
@@ -49,7 +49,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pictureBox2.Location = new System.Drawing.Point(366, 220);
+            this.pictureBox2.Location = new System.Drawing.Point(396, 214);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 16);
             this.pictureBox2.TabIndex = 1;
@@ -58,7 +58,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pictureBox3.Location = new System.Drawing.Point(701, 163);
+            this.pictureBox3.Location = new System.Drawing.Point(753, 163);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(17, 122);
             this.pictureBox3.TabIndex = 2;
@@ -69,19 +69,19 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(274, 412);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
             // 
             // World
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 480);
+            this.ClientSize = new System.Drawing.Size(782, 453);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "World";
             this.Text = "World";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

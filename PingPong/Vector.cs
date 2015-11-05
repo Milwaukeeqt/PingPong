@@ -18,12 +18,12 @@ namespace PingPong
             this.x = x;
         }
 
-        public Vector verticalFlip()
+        public Vector VerticalFlip()
         {
             return new Vector(x, -y);
         }
 
-        public Vector horizontalFlip()
+        public Vector HorizontalFlip()
         {
             return new Vector(-x, y);
         }

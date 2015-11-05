@@ -8,6 +8,7 @@ namespace PingPong
     public partial class World : Form
     {
         private readonly Timer _timer = new Timer();
+        private int fps;
         private const int PaddleSpeed = 10;
         private bool _playerUp, _playerDown;
         private bool _enemyUp, _enemyDown;
@@ -21,10 +22,7 @@ namespace PingPong
             KeyUp += MyKeyUp;
 
             label1.Text = "Press Space to start game";
-            ball = new Ball(new Vector( 2, 5), pictureBox2, this);
-
-            pictureBox1.Location = new Point(this.Width-this.Width, this.Height/2);
-            pictureBox3.Location = new Point(this.Width+this.Width, this.Height/2);
+            ball = new Ball(new Vector( -5, 5), pictureBox2, this);
         }
 
         public void GameLoop()
@@ -34,7 +32,7 @@ namespace PingPong
                 _timer.Reset();
                 RenderScene();
                 Application.DoEvents();
-                while (_timer.GetTicks() < 10) { };
+                while (_timer.GetTicks() < 10);
             }
         }
 
